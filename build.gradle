@@ -1,1 +1,49 @@
+plugins {
+    id 'net.minecraftforge.gradle' version '6.0.+'
+    id 'java'
+}
 
+group = 'com.example.grassdiamond'
+version = '1.0.0'
+archivesBaseName = 'grassdiamond'
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                grassdiamond {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+repositories {
+    maven {
+        name = "Forge"
+        url = "https://maven.minecraftforge.net/"
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:1.20.1-47.2.0"
+}
+
+jar {
+    manifest {
+        attributes([
+            "Specification-Title": "grassdiamond",
+            "Specification-Vendor": "Antoniosebyy",
+            "Specification-Version": "1.0.0",
+            "Implementation-Title": project.name,
+            "Implementation-Version": project.version,
+            "Implementation-Vendor": "Antoniosebyy",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
